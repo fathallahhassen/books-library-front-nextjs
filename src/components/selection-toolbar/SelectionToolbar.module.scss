@@ -1,0 +1,83 @@
+/* Shared button base */
+%btn-base {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+/* Toolbar layout */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Button variants */
+.viewButton {
+  @extend %btn-base;
+
+  background: #fff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+
+  &:hover {
+    background: #f0f8ff;
+  }
+}
+
+.saveButton {
+  @extend %btn-base;
+
+  background: var(--color-success);
+  color: #fff;
+  border: none;
+
+  &:hover {
+    background: var(--color-success-hover);
+  }
+}
+
+.disabledButton {
+  @extend %btn-base;
+  
+  background: #6c757d;
+  color: #fff;
+  border: none;
+  cursor: not-allowed;
+}
+
+/* Count badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}

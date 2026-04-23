@@ -1,0 +1,62 @@
+.card {
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid #ddd;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.selected {
+  border-color: var(--color-primary);
+}
+
+.cover {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.cover img,
+.coverMedia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  padding: 12px;
+}
+
+.name {
+  font-size: 14px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ─── Badge variants ─────────────────────────────────────────────── */
+.badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #fff;
+}
+
+.badgeSelected {
+  background: var(--color-success);
+}
+
+.badgeRemoval {
+  background: var(--color-danger);
+}
