@@ -83,13 +83,12 @@ export const useBooksService = () => {
     const searchBooks = useCallback(
         (query: string) => {
             const normalizedQuery = query.trim();
-            if (normalizedQuery.length < 2 || normalizedQuery.length > 100) return;
-            if (normalizedQuery === '' && books.length > 0) return;
-
+            if (normalizedQuery.length > 100) return;
+            if (normalizedQuery.length === 1) return;
             resetRequest();
             loadBooks(true, normalizedQuery);
         },
-        [books.length, resetRequest, loadBooks]
+        [resetRequest, loadBooks]
     );
 
     const loadSavedBooksFromDatabase = useCallback(
@@ -99,11 +98,12 @@ export const useBooksService = () => {
                 const savedBooks = response.data ?? [];
                 setSavedBooks(savedBooks);
                 return savedBooks;
-            } catch {
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to load saved books');
                 return [];
             }
         },
-        [setSavedBooks]
+        [setSavedBooks, setError]
     );
 
     const saveBooksToDatabase = useCallback(
@@ -115,13 +115,14 @@ export const useBooksService = () => {
                 const response = await api.bulkCreateBooks(booksToSave);
                 const {insertedIds = [], ignoredIds = []} = response.data ?? {};
                 return [...insertedIds, ...ignoredIds];
-            } catch {
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save books');
                 return [];
             } finally {
                 setOperationLoading(false);
             }
         },
-        [isOperationLoading, setOperationLoading]
+        [isOperationLoading, setOperationLoading, setError]
     );
 
     const deleteBooksFromDatabase = useCallback(
@@ -132,13 +133,14 @@ export const useBooksService = () => {
             try {
                 const response = await api.bulkDeleteBooks(bookIds);
                 return response.data?.deletedIds ?? [];
-            } catch {
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to delete books');
                 return [];
             } finally {
                 setOperationLoading(false);
             }
         },
-        [isOperationLoading, setOperationLoading]
+        [isOperationLoading, setOperationLoading, setError]
     );
 
     return {

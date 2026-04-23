@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { useBooksService } from '@/lib/useBooksService';
-import { useBooksStore } from '@/store/booksStore';
-import { BookCard, SearchBar, SelectionToolbar } from '@/components';
-import { Book } from '@/types/book';
+import {useEffect, useRef, useState} from 'react';
+import {useBooksService} from '@/lib/useBooksService';
+import {useBooksStore} from '@/store/booksStore';
+import {BookCard, SearchBar, SelectionToolbar} from '@/components';
+import {Book} from '@/types/book';
 import styles from './page.module.scss';
 
 export default function BooksListPage() {
@@ -19,7 +19,7 @@ export default function BooksListPage() {
         saveBooksToDatabase,
     } = useBooksService();
 
-    const { savedBooks, draftBooks, toggleDraftBook, clearDraftSelection } =
+    const {savedBooks, draftBooks, toggleDraftBook, clearDraftSelection} =
         useBooksStore();
 
     const [searchTerm, setSearchTerm] = useState('');
@@ -109,19 +109,19 @@ export default function BooksListPage() {
             ) : books.length > 0 ? (
                 <>
                     <div className={styles.grid}>
-                        {books.map((book, index) => (
+                        {books.map((book) => (
                             <BookCard
-                                key={index}
+                                key={book.id}
                                 book={book}
                                 selected={checkBookSelected(book)}
                                 selectedLabel={getSelectedLabel(book)}
-                                badgeVariant="selected"
+                                badgeVariant="Selected"
                                 onClick={selectBook}
                             />
                         ))}
                     </div>
                     {isLoading && <div className={styles.loader}>Loading more books...</div>}
-                    <div ref={sentinelRef} className={styles.sentinel} />
+                    <div ref={sentinelRef} className={styles.sentinel}/>
                 </>
             ) : (
                 <div className={styles.loader}>No books found.</div>

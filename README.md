@@ -18,37 +18,14 @@ A modern, responsive web application for browsing and managing a digital book li
 - **Language**: TypeScript
 - **Styling**: Bootstrap 5 + SCSS modules
 - **State Management**: Zustand
-- **HTTP Client**: Axios
+- **HTTP Client**: Fetch API
 - **API Integration**: Gutenberg Project API + Local database API
-
-## Project Structure
-
-```
-src/
-|-- app/                    # Next.js app router pages
-|   |-- books/             # Main books listing page
-|   |-- books/saved/       # Saved books management
-|   |-- layout.tsx         # Root layout
-|   |-- page.tsx           # Home page
-|-- components/            # Reusable UI components
-|   |-- book-card/         # Book display card
-|   |-- search-bar/        # Search input component
-|   |-- selection-toolbar/ # Selection management toolbar
-|-- lib/                   # Utility libraries
-|   |-- api.ts            # API client functions
-|   |-- environment.ts    # Environment configuration
-|   |-- useBooksService.ts # Custom hook for book operations
-|-- store/                 # Zustand store
-|   |-- booksStore.ts     # Global state management
-|-- types/                 # TypeScript type definitions
-|   |-- book.ts           # Book-related interfaces
-```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 20.9+
 - npm, yarn, pnpm, or bun
 
 ### Installation
@@ -125,14 +102,6 @@ This application supports all modern browsers:
 - Firefox 88+
 - Safari 14+
 - Edge 90+
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
 
 ## License
 

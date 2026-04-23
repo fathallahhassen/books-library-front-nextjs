@@ -1,45 +1,49 @@
-import { type KeyboardEvent } from 'react';
 import styles from './SearchBar.module.scss';
 
 interface SearchBarProps {
-  value: string;
-  onChange: (value: string) => void;
-  onSubmit: () => void;
-  placeholder?: string;
+    value: string;
+    onChange: (value: string) => void;
+    onSubmit: () => void;
+    placeholder?: string;
+    ariaLabel?: string;
 }
 
 export const SearchBar = ({
-  value,
-  onChange,
-  onSubmit,
-  placeholder = 'Search books...',
-}: SearchBarProps) => {
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onSubmit();
-    }
-  };
+                              value,
+                              onChange,
+                              onSubmit,
+                              placeholder = 'Search books...',
+                              ariaLabel = 'Search books',
+                          }: SearchBarProps) => {
 
-  return (
-    <div className={styles.wrapper}>
-      <div className={styles.inputGroup}>
-        <input
-          className={styles.input}
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button
-          className={styles.button}
-          type="button"
-          onClick={onSubmit}
-          aria-label="Search books"
-        >
-          Search
-        </button>
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.wrapper}>
+            <form
+                className={styles.inputGroup}
+                role="search"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    onSubmit();
+                }}
+            >
+
+                <input
+                    className={styles.input}
+                    type="text"
+                    aria-label={ariaLabel}
+                    placeholder={placeholder}
+                    value={value}
+                    onChange={(e) => onChange(e.target.value)}
+                />
+                <button
+                    className={styles.button}
+                    type="submit"
+                    onClick={onSubmit}
+                    aria-label="Search books"
+                >
+                    Search
+                </button>
+            </form>
+        </div>
+    );
 };

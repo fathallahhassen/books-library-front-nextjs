@@ -1,5 +1,5 @@
 .container {
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
   padding: 24px 16px;
 }
@@ -14,7 +14,7 @@
 .loader {
   padding: 40px;
   text-align: center;
-  color: #666;
+  color: var(--color-muted);
 }
 
 .sentinel {
